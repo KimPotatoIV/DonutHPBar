@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxht67jnofaci"]
+
+[ext_resource type="Script" uid="uid://bjwarimlhhg4x" path="res://scenes/mini_map/mini_map.gd" id="1_kyie7"]
+[ext_resource type="Texture2D" uid="uid://ba1vda74ja6op" path="res://scenes/mini_map/minimap_ring_grey.png" id="2_4727n"]
+[ext_resource type="Texture2D" uid="uid://5m6kmgebq22g" path="res://scenes/mini_map/icon.png" id="2_bqbao"]
+
+[node name="MiniMap" type="Node2D"]
+script = ExtResource("1_kyie7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_children = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_4727n")
+expand_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="TextureRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(64, 64)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="TextureRect/SubViewportContainer/SubViewport"]
+zoom = Vector2(0.125, 0.125)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_bqbao")
+centered = false
